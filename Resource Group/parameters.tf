@@ -14,7 +14,9 @@ variable "tags" {
   description = "Tags to apply to the Resource Group"
   type        = map(string)
   default = {
-    Environment = "Dev"
-    Owner       = "Team A"
+    "Landscape"= "Dev"
+    "Service Catalogue" = "..."
+    "Service Owner" = "..."
+    "Created By" = "..."
   }
 }
