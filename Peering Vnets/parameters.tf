@@ -10,26 +10,35 @@ variable "source_vnet_name" {
   default     = "vnet-a"
 }
 
+variable "source_vnet_id" {
+  description = "ID of the source VNet"
+  type        = string
+  default     = "/subscriptions/<sub_id>/resourceGroups/example-rg/providers/Microsoft.Network/virtualNetworks/vnet-a"
+}
+
 variable "remote_vnet_name" {
-  description = "Name of the remote VNet"
+  description = "Name of the remote VNet to peer with"
   type        = string
   default     = "vnet-b"
 }
 
+variable "remote_vnet_id" {
+  description = "ID of the remote VNet"
+  type        = string
+  default     = "/subscriptions/<sub_id>/resourceGroups/example-rg/providers/Microsoft.Network/virtualNetworks/vnet-b"
+}
+
 variable "allow_forwarded_traffic" {
-  description = "Whether to allow forwarded traffic in the peering"
   type        = bool
   default     = true
 }
 
 variable "allow_gateway_transit" {
-  description = "Whether to allow gateway transit"
   type        = bool
   default     = false
 }
 
 variable "use_remote_gateways" {
-  description = "Whether to use remote gateways"
   type        = bool
   default     = false
 }

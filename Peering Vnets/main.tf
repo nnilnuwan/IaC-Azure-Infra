@@ -1,18 +1,8 @@
-data "azurerm_virtual_network" "source_vnet" {
-  name                = var.source_vnet_name
-  resource_group_name = var.resource_group_name
-}
-
-data "azurerm_virtual_network" "remote_vnet" {
-  name                = var.remote_vnet_name
-  resource_group_name = var.resource_group_name
-}
-
 resource "azurerm_virtual_network_peering" "source_to_remote" {
   name                      = "${var.source_vnet_name}-to-${var.remote_vnet_name}"
   resource_group_name       = var.resource_group_name
   virtual_network_name      = var.source_vnet_name
-  remote_virtual_network_id = data.azurerm_virtual_network.remote_vnet.id
+  remote_virtual_network_id = var.remote_vnet_id
 
   allow_forwarded_traffic = var.allow_forwarded_traffic
   allow_gateway_transit   = var.allow_gateway_transit
@@ -23,7 +13,7 @@ resource "azurerm_virtual_network_peering" "remote_to_source" {
   name                      = "${var.remote_vnet_name}-to-${var.source_vnet_name}"
   resource_group_name       = var.resource_group_name
   virtual_network_name      = var.remote_vnet_name
-  remote_virtual_network_id = data.azurerm_virtual_network.source_vnet.id
+  remote_virtual_network_id = var.source_vnet_id
 
   allow_forwarded_traffic = var.allow_forwarded_traffic
   allow_gateway_transit   = false
